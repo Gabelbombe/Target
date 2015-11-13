@@ -47,16 +47,16 @@ ln -fs /vagrant/httpdocs $DOCROOT
 VHOST=$(cat <<EOF
 Listen 8080
 <VirtualHost *:80>
-  DocumentRoot "$DOCROOT"
+  DocumentRoot "$DOCROOT/public"
   ServerName localhost
   <Directory "$DOCROOT">
     AllowOverride All
   </Directory>
 </VirtualHost>
 <VirtualHost *:8080>
-  DocumentRoot "$DOCROOT"
+  DocumentRoot "$DOCROOT/public"
   ServerName localhost
-  <Directory "$DOCROOT">
+  <Directory "$DOCROOT/public">
     AllowOverride All
   </Directory>
 </VirtualHost>
@@ -70,8 +70,6 @@ service apache2 restart
 
 # Mysql
 # --------------------
-# Ignore the post install questions
-export DEBIAN_FRONTEND=noninteractive
 
 
 # Install MySQL quietly
@@ -102,7 +100,7 @@ mysql -u root -e "FLUSH PRIVILEGES"
 
 # Framework
 # --------------------
-curl -sS https://getcomposer.org/installer |php -- --install-dir=bin --filename=composer
+curl -sS https://getcomposer.org/installer |sudo php -- --install-dir=/usr/local/bin --filename=composer
 
 cd $DOCROOT ; echo -e '
 {
@@ -120,8 +118,8 @@ cd $DOCROOT ; echo -e '
   ],
   "minimum-stability": "dev",
   "require": {
-     "slim/slim": "2.*",
-    "php":        ">=5.6.0"
+    "slim/slim": "2.*",
+    "php":        ">=5.5.0"
   },
   "require-dev": {
     "phpunit/phpunit": "4.3.5",
@@ -146,7 +144,4 @@ cd $DOCROOT ; echo -e '
 }
 ' > composer.json
 
-composer install
-mkdir -p app/{Model,Controller,View,Helper} public
-
-echo "<?='working'?>" > public/index.php
+composer install ; ln -s /vagrant/payload/* $DOCROOT   ## refresh payload, but dont duplicate code...
