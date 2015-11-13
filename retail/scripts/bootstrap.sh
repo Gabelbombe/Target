@@ -37,9 +37,7 @@ apt-get install -y git
 
 # Delete default apache web dir and symlink mounted vagrant dir from host machine
 # --------------------
-rm -rf $DOCROOT
-mkdir -p /vagrant/httpdocs
-
+rm -rf $DOCROOT ; mkdir -p /vagrant/httpdocs
 ln -fs /vagrant/httpdocs $DOCROOT
 
 # Replace contents of default Apache vhost
@@ -49,6 +47,7 @@ Listen 8080
 <VirtualHost *:80>
   DocumentRoot "$DOCROOT/public"
   ServerName localhost
+  SetEnv APP_PATH $DOCROOT
   <Directory "$DOCROOT">
     AllowOverride All
   </Directory>
@@ -56,6 +55,7 @@ Listen 8080
 <VirtualHost *:8080>
   DocumentRoot "$DOCROOT/public"
   ServerName localhost
+  SetEnv APP_PATH $DOCROOT
   <Directory "$DOCROOT/public">
     AllowOverride All
   </Directory>
@@ -90,10 +90,10 @@ CREATE TABLE \`${DBNAME}\`.\`products\` (
 mysql -u root -e "
 LOCK TABLES \`${DBNAME}\`.\`products\` WRITE ;
 INSERT INTO \`${DBNAME}\`.\`products\` VALUES
-(1, 'pencil',   'its yellow, and slightly chewed on.',     1.99),
-(2, 'eraser',   'it erases supposedly',                    1.99),
-(3, 'pen',      'some say, its mightier than the sword',   0.99),
-(4, 'crayon',   'not edible, but dont tell the kids that', 1.00) ;
+  (1, 'pencil',   'its yellow, and slightly chewed on.',     1.99),
+  (2, 'eraser',   'it erases supposedly',                    1.99),
+  (3, 'pen',      'some say, its mightier than the sword',   0.99),
+  (4, 'crayon',   'not edible, but dont tell the kids that', 1.00) ;
 UNLOCK TABLES ;"
 mysql -u root -e "GRANT ALL PRIVILEGES ON ${DBNAME}.* TO '${DBUSER}'@'${DBHOST}' IDENTIFIED BY '${DBPASS}'"
 mysql -u root -e "FLUSH PRIVILEGES"
