@@ -77,15 +77,17 @@ echo -e '--> Installing Mysql 5.6'
 apt-get -q -y install mysql-server-5.6
 mysql -u root -e "CREATE DATABASE IF NOT EXISTS ${DBNAME}"
 mysql -u root -e "USE ${DBNAME}
-DROP TABLE IF EXISTS \`retail\` ;
-CREATE TABLE \`retail\` (
+DROP TABLE IF EXISTS \`products\` ;
+CREATE TABLE \`products\` (
   \`id\`                  bigint(20)    NOT NULL AUTO_INCREMENT,
   \`title\`               varchar(50)   DEFAULT NULL,
   \`description\`         varchar(255)  DEFAULT NULL,
   \`price\`               decimal(10,2) DEFAULT NULL,
-  \`timestamp\`           timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (\`id\`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
+LOCK TABLES \`products\` WRITE ;
+INSERT INTO \`products\` VALUES (0,'pencil','its yellow, and slightly chewed on.',1.99),(1,'eraser','it erases supposedly',1.99),(2,'pen','some say, its mightier than the sword',0.99),(3,'crayon','not edible, but dont tell the kids that',1.00); ;
+UNLOCK TABLES ;
 "
 mysql -u root -e "GRANT ALL PRIVILEGES ON ${DBNAME}.* TO '${DBUSER}'@'${DBHOST}' IDENTIFIED BY '${DBPASS}'"
 mysql -u root -e "FLUSH PRIVILEGES"
