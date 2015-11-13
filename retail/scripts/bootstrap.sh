@@ -6,6 +6,8 @@ DBUSER='retailuser'
 DBPASS='retailpass'
 DBNAME='retail'
 
+DOCROOT='/var/www/html'
+
 # Set Perl:locales
 # http://serverfault.com/questions/500764/dpkg-reconfigure-unable-to-re-open-stdin-no-file-or-directory
 # --------------------
@@ -35,26 +37,26 @@ apt-get install -y git
 
 # Delete default apache web dir and symlink mounted vagrant dir from host machine
 # --------------------
-rm -rf /var/www/html
+rm -rf $DOCROOT
 mkdir -p /vagrant/httpdocs
 
-ln -fs /vagrant/httpdocs /var/www/html
+ln -fs /vagrant/httpdocs $DOCROOT
 
 # Replace contents of default Apache vhost
 # --------------------
 VHOST=$(cat <<EOF
 Listen 8080
 <VirtualHost *:80>
-  DocumentRoot "/var/www/html"
+  DocumentRoot "$DOCROOT"
   ServerName localhost
-  <Directory "/var/www/html">
+  <Directory "$DOCROOT">
     AllowOverride All
   </Directory>
 </VirtualHost>
 <VirtualHost *:8080>
-  DocumentRoot "/var/www/html"
+  DocumentRoot "$DOCROOT"
   ServerName localhost
-  <Directory "/var/www/html">
+  <Directory "$DOCROOT">
     AllowOverride All
   </Directory>
 </VirtualHost>
@@ -76,18 +78,75 @@ export DEBIAN_FRONTEND=noninteractive
 echo -e '--> Installing Mysql 5.6'
 apt-get -q -y install mysql-server-5.6
 mysql -u root -e "CREATE DATABASE IF NOT EXISTS ${DBNAME}"
-mysql -u root -e "USE ${DBNAME}
-DROP TABLE IF EXISTS \`products\` ;
-CREATE TABLE \`products\` (
+
+mysql -u root -e "
+DROP TABLE IF EXISTS \`${DBNAME}\`.\`products\` ;
+CREATE TABLE \`${DBNAME}\`.\`products\` (
   \`id\`                  bigint(20)    NOT NULL AUTO_INCREMENT,
   \`title\`               varchar(50)   DEFAULT NULL,
   \`description\`         varchar(255)  DEFAULT NULL,
   \`price\`               decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (\`id\`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
-LOCK TABLES \`products\` WRITE ;
-INSERT INTO \`products\` VALUES (0,'pencil','its yellow, and slightly chewed on.',1.99),(1,'eraser','it erases supposedly',1.99),(2,'pen','some say, its mightier than the sword',0.99),(3,'crayon','not edible, but dont tell the kids that',1.00); ;
-UNLOCK TABLES ;
-"
+) ENGINE=InnoDB DEFAULT CHARSET=utf8"
+
+mysql -u root -e "
+LOCK TABLES \`${DBNAME}\`.\`products\` WRITE ;
+INSERT INTO \`${DBNAME}\`.\`products\` VALUES
+(1, 'pencil',   'its yellow, and slightly chewed on.',     1.99),
+(2, 'eraser',   'it erases supposedly',                    1.99),
+(3, 'pen',      'some say, its mightier than the sword',   0.99),
+(4, 'crayon',   'not edible, but dont tell the kids that', 1.00) ;
+UNLOCK TABLES ;"
 mysql -u root -e "GRANT ALL PRIVILEGES ON ${DBNAME}.* TO '${DBUSER}'@'${DBHOST}' IDENTIFIED BY '${DBPASS}'"
 mysql -u root -e "FLUSH PRIVILEGES"
+
+# Framework
+# --------------------
+curl -sS https://getcomposer.org/installer |php -- --install-dir=bin --filename=composer
+
+cd $DOCROOT ; echo -e '
+{
+  "name": "ehime/retail",
+  "description": "Simple storefront",
+  "keywords":    ["storefront", "vagrant", "aio"],
+  "version":     "1.0.0",
+  "type":        "library",
+  "license":     "MIT",
+  "authors": [
+    {
+      "name": "Jd Daniel",
+      "email": "dodomeki@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+     "slim/slim": "2.*",
+    "php":        ">=5.6.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.3.5",
+    "mockery/mockery": "0.8.*"
+  },
+  "autoload": {
+    "psr-0": {
+      "Model":      "src/",
+      "Controller": "src/",
+      "View":       "src/",
+      "Helper":     "src/"
+    },
+    "autoload-dev": {
+      "classmap": [
+        "tests/"
+      ]
+    },
+    "config": {
+      "preferred-install": "dist"
+    }
+  }
+}
+' > composer.json
+
+composer install
+mkdir -p app/{Model,Controller,View,Helper} public
+
+echo "<?='working'?>" > public/index.php
