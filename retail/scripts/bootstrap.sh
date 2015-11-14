@@ -82,18 +82,52 @@ DROP TABLE IF EXISTS \`${DBNAME}\`.\`products\` ;
 CREATE TABLE \`${DBNAME}\`.\`products\` (
   \`id\`                  bigint(20)    NOT NULL AUTO_INCREMENT,
   \`title\`               varchar(50)   DEFAULT NULL,
+  \`blurb\`               varchar(50)   DEFAULT NULL,
   \`description\`         varchar(255)  DEFAULT NULL,
   \`price\`               decimal(10,2) DEFAULT NULL,
+  \`features\`            blob          DEFAULT NULL,
   PRIMARY KEY (\`id\`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8"
 
 mysql -u root -e "
 LOCK TABLES \`${DBNAME}\`.\`products\` WRITE ;
 INSERT INTO \`${DBNAME}\`.\`products\` VALUES
-  (1, 'pencil',   'its yellow, and slightly chewed on.',     1.99),
-  (2, 'eraser',   'it erases supposedly',                    1.99),
-  (3, 'pen',      'some say, its mightier than the sword',   0.99),
-  (4, 'crayon',   'not edible, but dont tell the kids that', 1.00) ;
+  (
+    1,
+    'Pencil',
+    'It\'s orange and slightly chewed on.',
+    'Great tools inspire great ideas. Pencil by Jd is the most natural and expressive way to create on paper. Advanced technology meets beautiful design to keep you in the flow, without needing to switch to a pen. With Surface Pressure, Erase, Blend, and adaptive Palm Rejection (accidently dropping it), Pencil puts creative possibility in your hands.',
+    0.25,
+    '[\"It's Orange\",\"Slightly chewed on but still good\",\"Unlike the pen, you can write upside-down\",\"Prone to breaking\"]'
+  ),
+
+  (
+    2,
+    'Eraser',
+    'It erases supposedly, goes well with you pencil.',
+    'It leaves no marks behind and will remove some of the hardest pencil marks. you will definitely want four - if you only have one, you will be rue the day you get caught without it or leave it behind.',
+    1.99,
+    '[\"Goes perfectly with a pencil\",\"Removes markings\",\"Can never be found when you need it\"]'
+  ),
+
+  (
+    3,
+    'Pen',
+    'Some say, it\'s mightier than the sword.',
+    'The Retro 51 Tornado pen isn't new, but this Massdrop Custom Edition features a killer body design that you won't find anywhere else.',
+    2.99,
+    '[\"Amazing ability to write upside-down\",\"Never needs sharpening\",\"Last for weeks\",\"Was voted the most likely to be stolen\"]'
+  ),
+
+  (
+    4,
+    'Crayon',
+    'Not edible, but dont tell the kids that.',
+    'The only downside is that they don\’t come in an assortment of 72,000 colors and glitters and metallics and stuff. We can live with that.',
+    0.35,
+    '[\"Not edible\",\"Children like to eat them anyway\",\"Several colors\",\"Rolls\"]'
+  ) ;
+
 UNLOCK TABLES ;"
 mysql -u root -e "GRANT ALL PRIVILEGES ON ${DBNAME}.* TO '${DBUSER}'@'${DBHOST}' IDENTIFIED BY '${DBPASS}'"
 mysql -u root -e "FLUSH PRIVILEGES"
@@ -119,6 +153,7 @@ cd $DOCROOT ; echo -e '
   "minimum-stability": "dev",
   "require": {
     "slim/slim": "2.*",
+    "slimcontroller/slimcontroller": "0.4.3",
     "php":        ">=5.5.0"
   },
   "require-dev": {
@@ -127,6 +162,7 @@ cd $DOCROOT ; echo -e '
   },
   "autoload": {
     "psr-0": {
+      "Retail":     "src/",
       "Model":      "src/",
       "Controller": "src/",
       "View":       "src/",

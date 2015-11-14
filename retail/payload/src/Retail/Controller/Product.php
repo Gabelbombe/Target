@@ -3,14 +3,14 @@ Namespace Retail\Controller
 {
     USE Retail\Model\Database AS Database;
 
-    Class Index Extends \SlimController\SlimController
+    Class Product Extends \SlimController\SlimController
     {
-        public function indexAction()
+        public function getAction($id)
         {
             $db = New Database(APP_PATH . '/src/config/mysql.ini');
 
-            $this->render('home/index', [
-                'products' => $db->query(),
+            $this->render('product/get', [
+                'product' => $db->get($id),
             ]);
         }
     }
