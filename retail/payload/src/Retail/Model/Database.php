@@ -30,7 +30,7 @@ Namespace Retail\Model
 
         public function get($id)
         {
-            $stmt = $this->dbh->prepare('SELECT title, description, price FROM products WHERE id = :id');
+            $stmt = $this->dbh->prepare('SELECT title, blurb, description, features, price FROM products WHERE id = :id');
             $stmt->execute([
                 ':id' => $id,
             ]);

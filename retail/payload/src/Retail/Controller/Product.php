@@ -14,22 +14,32 @@ Namespace Retail\Controller
             ]);
         }
 
-        public function addAction($id)
+        public function addAction()
         {
-            $db = New Database(APP_PATH . '/src/config/mysql.ini');
+            if ($this->request()->isPost())
+            {
+                $db = New Database(APP_PATH . '/src/config/mysql.ini');
+                $db->insert();
+            } else {
+                $this->render('product/add');
 
-            $this->render('product/add', [
-                'product' => $db->get($id),
-            ]);
+            }
         }
 
         public function editAction($id = false)
         {
             $db = New Database(APP_PATH . '/src/config/mysql.ini');
 
-            $this->render('product/edit', [
-                'product' => $db->get($id),
-            ]);
+            if (false !== $id)
+            {
+                $this->render('product/edit', [
+                    'product' => $db->query(),
+                ]);
+            } else {
+                $this->render('product/edit', [
+                    'product' => $db->get($id),
+                ]);
+            }
         }
     }
 }

@@ -15,19 +15,23 @@
         <header>
             <hgroup>
                 <h1>Products</h1>
-                <h4>Our list of procuts</h4>
+                <h4>Our list of products</h4>
             </hgroup>
         </header>
 
-        <?php foreach($products AS $product) { ?>
-
         <section>
-
-            <p><img class="micro" src="/assets/img/<?php echo str_replace('-',strtolower($product['title'])); ?>.png"><?php echo "<a href='/product/{$product['id']}'>{$product['title']}</a>" ?></p>
-
+            <p><a class="pad" href='/add'>Add Products</a></p>
+        </section>
+        <section>
+            <p><a class="pad" href='/edit'>Edit Products</a></p>
         </section>
 
+        <?php foreach($products AS $product) { ?>
+        <section>
+            <p><img class="micro" src="/assets/img/<?php echo str_replace(' ','-',strtolower($product['title'])); ?>.png"><?php echo "<a href='/product/{$product['id']}'>{$product['title']}</a>" ?></p>
+        </section>
         <?php } ?>
+
     </div>
 </body>
 </html>
