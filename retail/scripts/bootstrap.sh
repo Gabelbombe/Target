@@ -98,7 +98,7 @@ INSERT INTO \`${DBNAME}\`.\`products\` VALUES
     'It\'s orange and slightly chewed on.',
     'Great tools inspire great ideas. Pencil by Jd is the most natural and expressive way to create on paper. Advanced technology meets beautiful design to keep you in the flow, without needing to switch to a pen. With Surface Pressure, Erase, Blend, and adaptive Palm Rejection (accidently dropping it), Pencil puts creative possibility in your hands.',
     0.25,
-    '[\"It's Orange\",\"Slightly chewed on but still good\",\"Unlike the pen, you can write upside-down\",\"Prone to breaking\"]'
+    '[\"It\'s Orange\",\"Slightly chewed on but still good\",\"Unlike the pen, you can write upside-down\",\"Prone to breaking\"]'
   ),
 
   (
@@ -114,7 +114,7 @@ INSERT INTO \`${DBNAME}\`.\`products\` VALUES
     3,
     'Pen',
     'Some say, it\'s mightier than the sword.',
-    'The Retro 51 Tornado pen isn't new, but this Massdrop Custom Edition features a killer body design that you won't find anywhere else.',
+    'The Retro 51 Tornado pen isn\'t new, but this Massdrop Custom Edition features a killer body design that you won\'t find anywhere else.',
     2.99,
     '[\"Amazing ability to write upside-down\",\"Never needs sharpening\",\"Last for weeks\",\"Was voted the most likely to be stolen\"]'
   ),
@@ -123,7 +123,7 @@ INSERT INTO \`${DBNAME}\`.\`products\` VALUES
     4,
     'Crayon',
     'Not edible, but dont tell the kids that.',
-    'The only downside is that they don\’t come in an assortment of 72,000 colors and glitters and metallics and stuff. We can live with that.',
+    'The only downside is that they dont come in an assortment of 72,000 colors and glitters and metallics and stuff. We can live with that.',
     0.35,
     '[\"Not edible\",\"Children like to eat them anyway\",\"Several colors\",\"Rolls\"]'
   ) ;

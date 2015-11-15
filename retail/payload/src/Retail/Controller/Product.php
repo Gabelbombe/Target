@@ -13,5 +13,23 @@ Namespace Retail\Controller
                 'product' => $db->get($id),
             ]);
         }
+
+        public function addAction($id)
+        {
+            $db = New Database(APP_PATH . '/src/config/mysql.ini');
+
+            $this->render('product/add', [
+                'product' => $db->get($id),
+            ]);
+        }
+
+        public function editAction($id = false)
+        {
+            $db = New Database(APP_PATH . '/src/config/mysql.ini');
+
+            $this->render('product/edit', [
+                'product' => $db->get($id),
+            ]);
+        }
     }
 }

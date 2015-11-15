@@ -1,14 +1,5 @@
 <?php
 
-echo json_encode([
-    "It's Orange",
-    "Slightly chewed on",
-    "Unlike the pen, you can write upside-down",
-    "Prone to breaking",
-]); die;
-
-error_reporting(-1); ini_set('error_reporting', E_ALL);
-
 // define a working directory
 define('APP_PATH', getenv('APP_PATH'));
 
@@ -27,6 +18,14 @@ $app = New \SlimController\Slim([
 $app->addRoutes([
     '/'            => 'Index:index',
     '/product/:id' => 'Product:get',
+    '/edit'        => 'Product:edit',
+    '/edit/:id'    => 'Product:edit',
+    '/add'         => 'Product:add',
+
+    '/product/:name' => ['post' => ['Home:hello', function() {
+        error_log("THIS ROUTE IS ONLY POST");
+    }]]
+
 ]);
 
 // bootstrap routes
