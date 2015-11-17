@@ -11,20 +11,45 @@ Namespace Barren
         public function __construct($map)
         {
             $this->map = $this->validateMap($map);
+            $this->buildAtlas();
         }
 
         /**
          * Builds the map outline
          */
-        public function buildAtlas()
+        protected function buildAtlas()
         {
             // constructs in loop
-            for ($xx = $this->map[0][0]; $xx < $this->map[1][1]; $xx++)
+            for ($x = $this->map[0][0]; $x < $this->map[1][0]; $x++)
             {
-                // fill with empty...
-                $this->atlas[$xx] = array_fill($this->map[0][1], $this->map[1][0], false);
+                $this->atlas[$x] = array_fill($this->map[0][1], $this->map[1][1], ' ');
             }
             return $this;
+        }
+
+
+        public function plot()
+        {
+            $caps = '+';
+            for ($x = $this->map[0][0]; $x < $this->map[1][1]; $x++) { $caps .= '-'; }
+            $caps .= "+\n";
+
+            echo $caps;
+
+                foreach ($this->atlas AS $node => $array)
+                {
+
+                    echo '|';
+                    foreach ($array AS $point)
+                    {
+                        echo "$point";
+                    }
+                    echo "|\n";
+                }
+
+
+            echo $caps;
+
         }
 
         /**
@@ -38,28 +63,57 @@ Namespace Barren
         {
             // clean up coordinates
             $coords = substr($coords, 1, -1);
-            $coords = preg_replace("/[^0-9]+/", "", html_entity_decode($coords, ENT_QUOTES));
+            $coords = str_replace(["'", '"'], '', $coords);
+
             foreach (explode(',', $coords) AS $set)
             {
-                $parts = explode(' ', $set);
+                $parts = array_filter(explode(' ', trim($set)));
+
                 if (4 !== count($parts)) Throw New \Exception('Coordinates have to be exactly 4 points...');
 
                 $this->coords[] = [
-                    [$parts[0], $parts[1]],
-                    [$parts[2], $parts[3]],
+                    $parts[0],
+                    $parts[1],
+                    $parts[2],
+                    $parts[3],
                 ];
             }
             return $this;
         }
 
-
+        /**
+         * Fill coordinates on map
+         */
         public function graph()
         {
             if (empty($this->map) || empty($this->coords)) Throw New \Exception('Map and Coords must be set.');
 
-            
+            foreach ($this->coords AS $set)
+            {
+                if (isset($this->atlas[$set[0]]) && isset($this->atlas[$set[1]]))
+                {
+                    $this->fillX($set[0], $set[1]);  // 1 -> 3
+                    $this->fillY($set[2], $set[3]);  // 5 -> 3
+                }
+            }
+            return $this;
         }
 
+        private function fillX($x, $y)
+        {
+            for ($i = $x ; $i < $y ; $i++)
+            {
+                $this->atlas[$y][$i] = '1';
+            }
+        }
+
+        private function fillY($y, $x)
+        {
+            for ($i = $y ; $i > $x ; $i--)
+            {
+                $this->atlas[$i][$x] = '1';
+            }
+        }
 
         /**
          * @param $map
@@ -73,7 +127,6 @@ Namespace Barren
             {
                 if (2 !== count($plot)) Throw New \LogicException('Map must have two sets of two.');
             }
-
             return $map;
         }
     }

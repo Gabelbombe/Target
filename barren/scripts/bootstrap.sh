@@ -8,6 +8,8 @@ DBNAME='retail'
 
 DOCROOT='/var/www/html'
 
+echo "export APP_PATH=$DOCROOT" >> .bashrc
+
 # Set Perl:locales
 # http://serverfault.com/questions/500764/dpkg-reconfigure-unable-to-re-open-stdin-no-file-or-directory
 # --------------------

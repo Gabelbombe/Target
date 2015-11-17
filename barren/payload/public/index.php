@@ -1,57 +1,12 @@
 <?php error_reporting(-1); ini_set('error_reporting', E_ALL);
 
-require '../Barren/Map.php';
+// define a working directory
+define('APP_PATH', getenv('APP_PATH'));
 
-$barren = New \Barren\Map([[0, 0], [10, 50]]);
+require APP_PATH . '/src/Barren/Map.php';
 
-$barren->setCoords('{"48 192 351 207", "48 392 351 407", "120 52 135 547", "260 52 275 547"}');
-
-
-
-
-
-function formatCoords($coords)
-{
-
-}
-
-$mapArray  = buildAtlas($map);
-$mapCoords = formatCoords($coords);
-
-function graph($mapArray, $mapCoords)
-{
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function buildMap($map)
-{
-    $xx = '';
-    $xy = '';
-
-    $xy .= '+';
-    foreach (range($map[0][0], $map[1][1]) AS $point) {
-        $xy .= '-';
-    }
-    $xy .= "+\n";
-    foreach (range($map[0][1], $map[1][0]) AS $point) {
-        $xx .= '|';
-        foreach (range($map[0][0], ($map[1][1])) AS $point) $xx .= ' ';
-        $xx .= "|\n";
-    }
-    echo $xy . $xx . $xy;
-}
+                         // y  x    y   x
+$barren = New \Barren\Map([[0, 0], [100, 300]]);
+$barren->setCoords('{"24 96 175 103", "24 196 175 203", "60 26 67 273", "130 26 137 273"}')
+       ->graph()
+       ->plot();

@@ -1,0 +1,23 @@
+  1                           .
+                                                       /     /             .
+                                                       /     /             .
+                                                       /     /             .
+                                                       /     /             .
+                                                       /     /             .
+                                               \ \ \ \ + \ \ + \ \ \ \ \   .
+                                                       /   2 /             .
+                                                       /     /             .
+                                               \ \ \ \ + \ \ + \ \ \ \ \   .
+                                                       /   3 /             .
+                                                   \ \ + \ \ + \ \         .
+                                                                           .
+                                                                           .
+                                             . . . . . . . . . . . . . . . .
+
+
+
+                                             1 would be largest (area around that doesn't "touch" anything)
+                                             2 second largest
+                                             3 third
+
+                                             mind you rsort the above for the return value
