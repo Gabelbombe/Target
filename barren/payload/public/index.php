@@ -4,9 +4,7 @@
 define('APP_PATH', getenv('APP_PATH'));
 
 require APP_PATH . '/src/Barren/Map.php';
-
-                         // y  x    y   x
-$barren = New \Barren\Map([[0, 0], [100, 300]]);
-$barren->setCoords('{"24 96 175 103", "24 196 175 203", "60 26 67 273", "130 26 137 273"}')
+$barren = New \Barren\Map([[0, 0], [200, 200]]);
+$barren->setCoords('{"12 48 87 51", "12 98 87 101", "30 13 33 136", "65 13 68 136"}')
        ->graph()
        ->plot();

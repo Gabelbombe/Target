@@ -54,7 +54,7 @@ Namespace Barren
 
         /**
          * Turns coordinates into something semi-usable...
-         *
+         *ww
          * @param $coords
          * @return $this
          * @throws \Exception
