@@ -8,11 +8,15 @@ Namespace Barren
 
         private     $atlas  = [];
 
+        /**
+         * @param $map
+         */
         public function __construct($map)
         {
             $this->map = $this->validateMap($map);
             $this->buildAtlas();
         }
+
 
         /**
          * Builds the map outline
@@ -22,12 +26,15 @@ Namespace Barren
             // constructs in loop
             for ($x = $this->map[0][0]; $x < $this->map[1][0]; $x++)
             {
-                $this->atlas[$x] = array_fill($this->map[0][1], $this->map[1][1], ' ');
+                $this->atlas[$x] = array_fill($this->map[0][1], $this->map[1][1], '.');
             }
             return $this;
         }
 
 
+        /**
+         * Will plot the exterior of the map using the atlas and original mapping points
+         */
         public function plot()
         {
             $caps = '+';
@@ -46,15 +53,13 @@ Namespace Barren
                     }
                     echo "|\n";
                 }
-
-
             echo $caps;
-
         }
+
 
         /**
          * Turns coordinates into something semi-usable...
-         *ww
+         *
          * @param $coords
          * @return $this
          * @throws \Exception
@@ -81,6 +86,7 @@ Namespace Barren
             return $this;
         }
 
+
         /**
          * Fill coordinates on map
          */
@@ -92,20 +98,24 @@ Namespace Barren
             {
                 if (isset($this->atlas[$set[0]]) && isset($this->atlas[$set[1]]))
                 {
-                    $this->fillX($set[0], $set[1]);  // 1 -> 3
+                    $this->fillX($set[0], $set[1]);  // 12 -> 48
                     $this->fillY($set[2], $set[3]);  // 5 -> 3
                 }
             }
             return $this;
         }
 
+
         private function fillX($x, $y)
         {
+
+
             for ($i = $x ; $i < $y ; $i++)
             {
-                $this->atlas[$y][$i] = '1';
+                $this->atlas[$x][$i] = ' ';
             }
         }
+
 
         private function fillY($y, $x)
         {
@@ -114,6 +124,7 @@ Namespace Barren
                 $this->atlas[$i][$x] = '1';
             }
         }
+
 
         /**
          * @param $map

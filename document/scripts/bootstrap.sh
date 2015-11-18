@@ -2,9 +2,9 @@
 
 ## Can also be passed via ARGV[0]
 DBHOST='localhost'
-DBUSER='barrenuser'
-DBPASS='barrenpass'
-DBNAME='barren'
+DBUSER='docuuser'
+DBPASS='docupass'
+DBNAME='documents'
 
 DOCROOT='/var/www/html'
 
