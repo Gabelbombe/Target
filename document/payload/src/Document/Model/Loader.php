@@ -21,8 +21,9 @@ Namespace Document\Model
         {
             $terms = $this->rcTrim($terms);
             $this->text = str_replace($terms, '', $this->text);
-
             $this->common(); // removes crap
+            $this->common($this->junk);
+
 
             print_r($this);
             return $this;
