@@ -2,7 +2,15 @@
 
 // define a working directory
 define('APP_PATH', getenv('APP_PATH'));
-
-// load
 require APP_PATH . '/vendor/autoload.php';
 
+USE \Document\Controller\Bootstrap AS Bootstrap;
+
+$payload =
+[
+    'type' => (! isset($argv) ?: 0),
+    'args' => (! isset($argv) ? $_GET : $argv),
+];
+
+$bootstrap = New Bootstrap($payload);
+$bootstrap->run();

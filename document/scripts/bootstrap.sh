@@ -70,4 +70,50 @@ echo "$VHOST" > /etc/apache2/sites-enabled/000-default.conf
 a2enmod rewrite
 service apache2 restart
 
-ln -fs /vagrant/payload/* $DOCROOT   ## refresh payload, but dont duplicate code...
+# Framework
+# --------------------
+curl -sS https://getcomposer.org/installer |sudo php -- --install-dir=/usr/local/bin --filename=composer
+
+cd $DOCROOT ; echo -e '
+{
+  "name": "ehime/document",
+  "description": "Multi Searcher",
+  "keywords":    ["document", "search", "bruteforce", "index", "vagrant"],
+  "version":     "1.0.0",
+  "type":        "library",
+  "license":     "MIT",
+  "authors": [
+    {
+      "name": "Jd Daniel",
+      "email": "dodomeki@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php":        ">=5.5.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.3.5",
+    "mockery/mockery": "0.8.*"
+  },
+  "autoload": {
+    "psr-0": {
+      "Document":   "src/",
+      "Model":      "src/",
+      "Controller": "src/",
+      "View":       "src/",
+      "Helper":     "src/"
+    },
+    "autoload-dev": {
+      "classmap": [
+        "tests/"
+      ]
+    },
+    "config": {
+      "preferred-install": "dist"
+    }
+  }
+}
+' > composer.json
+
+composer install ; ln -fs /vagrant/payload/* $DOCROOT   ## refresh payload, but dont duplicate code...
