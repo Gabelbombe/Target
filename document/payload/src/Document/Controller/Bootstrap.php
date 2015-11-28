@@ -55,7 +55,9 @@ Namespace Document\Controller
                  * digits and $-_.+!*'(),{}|\\^~[]`<>#%";/?:@&=.
                  */
                 'filter' => FILTER_SANITIZE_URL,
-            ]
+            ],
+
+            'common' => [ 'filter' => FILTER_VALIDATE_BOOLEAN ],
         ];
 
         public function __construct(array $payload = [])
@@ -81,10 +83,10 @@ Namespace Document\Controller
             header('Content-type: text/plain; charset=UTF-8');
 
             $this->params = filter_var_array($this->params, $this->filter);
-
             $type = '\\Document\\Controller\\Search\\' . ucfirst(strtolower($this->params['type']));
 
-            return New $type($this->params);
+            print_r(New $type($this->params));
+
         }
 
         /**
@@ -93,7 +95,8 @@ Namespace Document\Controller
         private function keysExist()
         {
             // not required.. so unset if empty...
-            if (empty($this->params['strip'])) unset($this->filter['strip']);
+            if (empty($this->params['strip']))  unset($this->filter['strip']);
+            if (empty($this->params['common'])) unset($this->filter['common']);
 
             foreach (array_keys($this->filter) AS $key) {
                 if (empty($this->params[$key])) Throw New \RuntimeException("{$key} is required, but argument was not found...");
