@@ -26,18 +26,14 @@ Namespace Document\Controller\Search
 
             $this->matches();
 
-            echo "\n{$this->count} matches of '{$this->params['find']}' found.'\n\n";
-
-            echo $this->text ."\n";
-
-            exit;
+            //echo "\n{$this->count} matches of '{$this->params['find']}' found.'\n\n";
         }
 
         public function matches()
         {
             $index = array_count_values(explode(' ', $this->text));
 
-            if (isset($index[$this->params['find']])) 
+            if (isset($index[$this->params['find']]))
             {
                 $this->count = $index[$this->params['find']];
             }

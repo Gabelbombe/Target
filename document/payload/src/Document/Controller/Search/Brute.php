@@ -27,9 +27,7 @@ Namespace Document\Controller\Search
 
             $this->matches();
 
-            echo "\n{$this->count} matches of '{$this->params['find']}' found.'\n\n";
-
-            exit;
+            //echo "\n{$this->count} matches of '{$this->params['find']}' found.'\n\n";
         }
 
         /**

@@ -62,7 +62,7 @@ Namespace Document\Controller
 
         public function __construct(array $payload = [])
         {
-            define('CLI', (!$payload['type'] ?: 0));
+            if (! defined('CLI')) define('CLI', (! $payload['type'] ?: 0));
 
             /**
              * Move below to some other parsing class
@@ -72,20 +72,18 @@ Namespace Document\Controller
 
             // convert CLI opts to GET params if you're playing from the command line
             if (CLI) parse_str(implode("&", array_slice($payload['args'], 1)), $_GET);
+            if (2 === $payload['type']) $_GET = $payload['args'];
 
             $this->params = $_GET;
-
             $this->keysExist();
         }
 
         public function run()
         {
-            header('Content-type: text/plain; charset=UTF-8');
-
             $this->params = filter_var_array($this->params, $this->filter);
             $type = '\\Document\\Controller\\Search\\' . ucfirst(strtolower($this->params['type']));
 
-            print_r(New $type($this->params));
+            return New $type($this->params);
 
         }
 
