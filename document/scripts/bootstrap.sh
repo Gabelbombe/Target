@@ -31,6 +31,7 @@ apt-get install -y apache2
 apt-get install -y php5
 apt-get install -y libapache2-mod-php5
 apt-get install -y php5-mysqlnd php5-curl php5-xdebug php5-gd php5-intl php-pear php5-imap php5-mcrypt php5-ming php5-ps php5-pspell php5-recode php5-sqlite php5-tidy php5-xmlrpc php5-xsl php-soap
+apt-get isntall -y phpunit
 
 php5enmod mcrypt
 
@@ -40,7 +41,6 @@ apt-get install -y git
 # Delete default apache web dir and symlink mounted vagrant dir from host machine
 # --------------------
 rm -rf $DOCROOT ; mkdir -p /vagrant/httpdocs
-ln -fs /vagrant/httpdocs $DOCROOT
 
 # Replace contents of default Apache vhost
 # --------------------

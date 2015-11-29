@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1448816483">
+  <project timestamp="1448816483">
+    <package name="Document\Controller">
+      <file name="/vagrant/payload/src/Document/Controller/Bootstrap.php">
+        <class name="Bootstrap" namespace="Document\Controller">
+          <metrics methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="0" elements="23" coveredelements="0"/>
+        </class>
+        <line num="4" type="stmt" count="0"/>
+        <line num="63" type="method" name="__construct" crap="30" count="0"/>
+        <line num="64" type="stmt" count="0"/>
+        <line num="65" type="stmt" count="0"/>
+        <line num="74" type="stmt" count="0"/>
+        <line num="75" type="stmt" count="0"/>
+        <line num="77" type="stmt" count="0"/>
+        <line num="78" type="stmt" count="0"/>
+        <line num="79" type="stmt" count="0"/>
+        <line num="81" type="method" name="run" crap="2" count="0"/>
+        <line num="82" type="stmt" count="0"/>
+        <line num="83" type="stmt" count="0"/>
+        <line num="84" type="stmt" count="0"/>
+        <line num="86" type="stmt" count="0"/>
+        <line num="88" type="stmt" count="0"/>
+        <line num="93" type="method" name="keysExist" crap="30" count="0"/>
+        <line num="94" type="stmt" count="0"/>
+        <line num="96" type="stmt" count="0"/>
+        <line num="97" type="stmt" count="0"/>
+        <line num="99" type="stmt" count="0"/>
+        <line num="100" type="stmt" count="0"/>
+        <line num="101" type="stmt" count="0"/>
+        <line num="103" type="stmt" count="0"/>
+        <line num="104" type="stmt" count="0"/>
+        <metrics loc="105" ncloc="67" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="21" coveredstatements="0" elements="24" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="Document\Controller\Search">
+      <file name="/vagrant/payload/src/Document/Controller/Search/Brute.php">
+        <class name="Brute" namespace="Document\Controller\Search">
+          <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="21" coveredstatements="0" elements="23" coveredelements="0"/>
+        </class>
+        <line num="3" type="stmt" count="0"/>
+        <line num="11" type="method" name="__construct" crap="20" count="0"/>
+        <line num="12" type="stmt" count="0"/>
+        <line num="13" type="stmt" count="0"/>
+        <line num="14" type="stmt" count="0"/>
+        <line num="16" type="stmt" count="0"/>
+        <line num="18" type="stmt" count="0"/>
+        <line num="19" type="stmt" count="0"/>
+        <line num="20" type="stmt" count="0"/>
+        <line num="21" type="stmt" count="0"/>
+        <line num="23" type="stmt" count="0"/>
+        <line num="24" type="stmt" count="0"/>
+        <line num="25" type="stmt" count="0"/>
+        <line num="26" type="stmt" count="0"/>
+        <line num="28" type="stmt" count="0"/>
+        <line num="30" type="stmt" count="0"/>
+        <line num="31" type="stmt" count="0"/>
+        <line num="36" type="method" name="matches" crap="12" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <line num="39" type="stmt" count="0"/>
+        <line num="40" type="stmt" count="0"/>
+        <line num="41" type="stmt" count="0"/>
+        <line num="42" type="stmt" count="0"/>
+        <metrics loc="43" ncloc="40" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="22" coveredstatements="0" elements="24" coveredelements="0"/>
+      </file>
+      <file name="/vagrant/payload/src/Document/Controller/Search/Index.php">
+        <class name="Index" namespace="Document\Controller\Search">
+          <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="22" coveredstatements="0" elements="24" coveredelements="0"/>
+        </class>
+        <line num="3" type="stmt" count="0"/>
+        <line num="11" type="method" name="__construct" crap="20" count="0"/>
+        <line num="12" type="stmt" count="0"/>
+        <line num="13" type="stmt" count="0"/>
+        <line num="14" type="stmt" count="0"/>
+        <line num="15" type="stmt" count="0"/>
+        <line num="17" type="stmt" count="0"/>
+        <line num="18" type="stmt" count="0"/>
+        <line num="19" type="stmt" count="0"/>
+        <line num="20" type="stmt" count="0"/>
+        <line num="22" type="stmt" count="0"/>
+        <line num="23" type="stmt" count="0"/>
+        <line num="24" type="stmt" count="0"/>
+        <line num="25" type="stmt" count="0"/>
+        <line num="27" type="stmt" count="0"/>
+        <line num="29" type="stmt" count="0"/>
+        <line num="30" type="stmt" count="0"/>
+        <line num="32" type="method" name="matches" crap="6" count="0"/>
+        <line num="33" type="stmt" count="0"/>
+        <line num="34" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <line num="39" type="stmt" count="0"/>
+        <line num="40" type="stmt" count="0"/>
+        <metrics loc="41" ncloc="41" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="0" elements="25" coveredelements="0"/>
+      </file>
+      <file name="/vagrant/payload/src/Document/Controller/Search/Regex.php">
+        <class name="Regex" namespace="Document\Controller\Search">
+          <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="0" elements="21" coveredelements="0"/>
+        </class>
+        <line num="3" type="stmt" count="0"/>
+        <line num="11" type="method" name="__construct" crap="20" count="0"/>
+        <line num="12" type="stmt" count="0"/>
+        <line num="13" type="stmt" count="0"/>
+        <line num="14" type="stmt" count="0"/>
+        <line num="15" type="stmt" count="0"/>
+        <line num="17" type="stmt" count="0"/>
+        <line num="18" type="stmt" count="0"/>
+        <line num="19" type="stmt" count="0"/>
+        <line num="20" type="stmt" count="0"/>
+        <line num="22" type="stmt" count="0"/>
+        <line num="23" type="stmt" count="0"/>
+        <line num="24" type="stmt" count="0"/>
+        <line num="25" type="stmt" count="0"/>
+        <line num="27" type="stmt" count="0"/>
+        <line num="29" type="stmt" count="0"/>
+        <line num="30" type="stmt" count="0"/>
+        <line num="32" type="method" name="matches" crap="2" count="0"/>
+        <line num="33" type="stmt" count="0"/>
+        <line num="34" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <metrics loc="38" ncloc="36" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="0" elements="22" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="Document\Model">
+      <file name="/vagrant/payload/src/Document/Model/Loader.php">
+        <class name="Loader" namespace="Document\Model">
+          <metrics methods="6" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="0" elements="26" coveredelements="0"/>
+        </class>
+        <line num="11" type="method" name="load" crap="12" count="0"/>
+        <line num="13" type="stmt" count="0"/>
+        <line num="15" type="stmt" count="0"/>
+        <line num="17" type="stmt" count="0"/>
+        <line num="20" type="method" name="strip" crap="2" count="0"/>
+        <line num="22" type="stmt" count="0"/>
+        <line num="24" type="stmt" count="0"/>
+        <line num="27" type="method" name="removeCommonWords" crap="2" count="0"/>
+        <line num="29" type="stmt" count="0"/>
+        <line num="30" type="stmt" count="0"/>
+        <line num="31" type="stmt" count="0"/>
+        <line num="39" type="method" name="rcTrim" crap="6" count="0"/>
+        <line num="41" type="stmt" count="0"/>
+        <line num="50" type="method" name="rcLower" crap="6" count="0"/>
+        <line num="52" type="stmt" count="0"/>
+        <line num="55" type="method" name="common" crap="6" count="0"/>
+        <line num="57" type="stmt" count="0"/>
+        <line num="58" type="stmt" count="0"/>
+        <line num="59" type="stmt" count="0"/>
+        <line num="61" type="stmt" count="0"/>
+        <line num="62" type="stmt" count="0"/>
+        <line num="63" type="stmt" count="0"/>
+        <line num="64" type="stmt" count="0"/>
+        <line num="66" type="stmt" count="0"/>
+        <line num="67" type="stmt" count="0"/>
+        <line num="68" type="stmt" count="0"/>
+        <metrics loc="69" ncloc="55" classes="1" methods="6" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="0" elements="26" coveredelements="0"/>
+      </file>
+    </package>
+    <metrics files="5" loc="296" ncloc="239" classes="5" methods="15" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="106" coveredstatements="0" elements="121" coveredelements="0"/>
+  </project>
+</coverage>
