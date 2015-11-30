@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="Hello Name" tests="1" assertions="1" failures="0" errors="0" time="0.012590">
-    <testsuite name="Tests\Integration\DocumentTest" file="/vagrant/payload/tests/integration/document/DocumentTest.php" tests="1" assertions="1" failures="0" errors="0" time="0.012590">
-      <testcase name="testLoaderLoadFile" class="Tests\Integration\DocumentTest" file="/vagrant/payload/tests/integration/document/DocumentTest.php" line="9" assertions="1" time="0.012590"/>
+  <testsuite name="Hello Name" tests="2" assertions="1" failures="0" errors="1" time="0.014374">
+    <testsuite name="Tests\Integration\DocumentTest" file="/vagrant/payload/tests/integration/document/DocumentTest.php" tests="2" assertions="1" failures="0" errors="1" time="0.014374">
+      <testcase name="testLoaderFileExists" class="Tests\Integration\DocumentTest" file="/vagrant/payload/tests/integration/document/DocumentTest.php" line="16" assertions="1" time="0.007290"/>
+      <testcase name="testLoaderInstanceOfLoader" class="Tests\Integration\DocumentTest" file="/vagrant/payload/tests/integration/document/DocumentTest.php" line="21" assertions="0" time="0.007084">
+        <error type="PHPUnit_Framework_Exception">Tests\Integration\DocumentTest::testLoaderInstanceOfLoader
+PHPUnit_Framework_Exception: Argument #1 (No Value) of PHPUnit_Framework_Assert::assertInstanceOf() must be a class or interface name
+
+/vagrant/payload/tests/integration/document/DocumentTest.php:24
+</error>
+      </testcase>
     </testsuite>
   </testsuite>
 </testsuites>

@@ -6,12 +6,23 @@ Namespace Tests\Integration
 
     Class DocumentTest Extends PHPUnit_Framework_TestCase
     {
-        public function testLoaderLoadFile()
-        {
-            $file = APP_PATH . '/public/files/warp_drive.txt';
-            $this->assertFileExists($file);
+        protected $file = null;
 
-            $loader = New Loader($file);
+        public function __construct()
+        {
+            $this->file = APP_PATH . '/public/files/warp_drive.txt';
+        }
+
+        public function testLoaderFileExists()
+        {
+            $this->assertFileExists($this->file);
+        }
+
+        public function testLoaderInstanceOfLoader()
+        {
+            $loader = New Loader();
+            $this->assertInstanceOf('Loader', $loader);
+
         }
     }
 }
