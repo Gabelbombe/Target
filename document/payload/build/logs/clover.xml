@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1448862167">
-  <project timestamp="1448862167">
+<coverage generated="1448893643">
+  <project timestamp="1448893643">
     <package name="Document\Controller">
       <file name="/vagrant/payload/src/Document/Controller/Bootstrap.php">
         <class name="Bootstrap" namespace="Document\Controller">

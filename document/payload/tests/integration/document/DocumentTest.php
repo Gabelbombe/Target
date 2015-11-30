@@ -6,7 +6,8 @@ Namespace Tests\Integration
 
     Class DocumentTest Extends PHPUnit_Framework_TestCase
     {
-        protected $file = null;
+        protected $file   = null,
+                  $loader = null;
 
         public function __construct()
         {
@@ -18,11 +19,20 @@ Namespace Tests\Integration
             $this->assertFileExists($this->file);
         }
 
-        public function testLoaderInstanceOfLoader()
+        public function testLoaderExists()
         {
-            $loader = New Loader();
-            $this->assertInstanceOf('Loader', $loader);
+            $this->loader = New Loader();
+            $this->assertTrue(is_object($this->loader));
+        }
 
+        public function testLoaderHasPublicMethods()
+        {
+            foreach(['strip', 'removeCommonWords'] AS $method)
+            {
+                $this->assertTrue(
+                    method_exists($this->loader, $method), 'Class does not have method ' . $method
+                );
+            }
         }
     }
 }

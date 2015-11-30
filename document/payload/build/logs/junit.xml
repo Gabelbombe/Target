@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="Hello Name" tests="2" assertions="1" failures="0" errors="1" time="0.014374">
-    <testsuite name="Tests\Integration\DocumentTest" file="/vagrant/payload/tests/integration/document/DocumentTest.php" tests="2" assertions="1" failures="0" errors="1" time="0.014374">
-      <testcase name="testLoaderFileExists" class="Tests\Integration\DocumentTest" file="/vagrant/payload/tests/integration/document/DocumentTest.php" line="16" assertions="1" time="0.007290"/>
-      <testcase name="testLoaderInstanceOfLoader" class="Tests\Integration\DocumentTest" file="/vagrant/payload/tests/integration/document/DocumentTest.php" line="21" assertions="0" time="0.007084">
-        <error type="PHPUnit_Framework_Exception">Tests\Integration\DocumentTest::testLoaderInstanceOfLoader
-PHPUnit_Framework_Exception: Argument #1 (No Value) of PHPUnit_Framework_Assert::assertInstanceOf() must be a class or interface name
+  <testsuite name="Hello Name" tests="3" assertions="3" failures="1" errors="0" time="0.017170">
+    <testsuite name="Tests\Integration\DocumentTest" file="/vagrant/payload/tests/integration/document/DocumentTest.php" tests="3" assertions="3" failures="1" errors="0" time="0.017170">
+      <testcase name="testLoaderFileExists" class="Tests\Integration\DocumentTest" file="/vagrant/payload/tests/integration/document/DocumentTest.php" line="17" assertions="1" time="0.007448"/>
+      <testcase name="testLoaderExists" class="Tests\Integration\DocumentTest" file="/vagrant/payload/tests/integration/document/DocumentTest.php" line="22" assertions="1" time="0.005310"/>
+      <testcase name="testLoaderHasPublicMethods" class="Tests\Integration\DocumentTest" file="/vagrant/payload/tests/integration/document/DocumentTest.php" line="28" assertions="1" time="0.004412">
+        <failure type="PHPUnit_Framework_ExpectationFailedException">Tests\Integration\DocumentTest::testLoaderHasPublicMethods
+Class does not have method strip
+Failed asserting that false is true.
 
-/vagrant/payload/tests/integration/document/DocumentTest.php:24
-</error>
+/vagrant/payload/tests/integration/document/DocumentTest.php:35
+</failure>
       </testcase>
     </testsuite>
   </testsuite>
